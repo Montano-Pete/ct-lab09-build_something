@@ -2,14 +2,14 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
-import StarWars from '../model/StarWars';
+import StarWars from '../lib/models/StarWars.js';
 
 describe('starWars routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
 
-  it('creates a starWars character VIA post', async () => {
+  it('creates a starWars character via POST', async () => {
     const character  = {
       character: 'Luke Skywalker',
       weapon: 'Lightsaber',
