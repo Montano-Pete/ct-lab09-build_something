@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS starwars;
+
+CREATE TABLE starwars (
+  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  character TEXT NOT NULL,
+  weapon TEXT NOT NULL,
+  force_user BOOL NOT NULL,
+  home_planet TEXT NOT NULL,
+  race TEXT NOT NULL
+);
