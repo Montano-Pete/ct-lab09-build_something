@@ -55,4 +55,18 @@ describe('starWars routes', () => {
 
     expect(res.body).toEqual([lukeSkywalker, hanSolo, generalGrievous]);
   });
+
+  it('get a character by id via GET', async () => {
+    const character = await StarWars.insert({
+      character: 'Han Solo',
+      weapon: 'DL-44 Heavy Blaster Pistol',
+      forceUser: false,
+      homePlanet: 'Corellia',
+      race: 'Human'
+    });
+
+    const res = await request(app).get(`/api/v1/starwars/${character.id}`);
+
+    expect(res.body).toEqual(character);
+  });
 });
