@@ -69,4 +69,23 @@ describe('starWars routes', () => {
 
     expect(res.body).toEqual(character);
   });
+
+  it('updates a character by id via PUt', async () => {
+    const character = await StarWars.insert({
+      character: 'Han Solo',
+      weapon: 'DL-44 Heavy Blaster Pistol',
+      forceUser: true, // incorrect fact
+      homePlanet: 'Corellia',
+      race: 'Human'
+    });
+
+    const res = await request(app)
+      .put(`/api/v1/starwars/${character.id}`)
+      .send({ forceUser: false });
+
+    expect(res.body).toEqual({
+      ...character,
+      forceUser: false
+    });
+  });
 });
