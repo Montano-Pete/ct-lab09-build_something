@@ -14,7 +14,8 @@ describe('starWars routes', () => {
       character: 'Luke Skywalker',
       weapon: 'Lightsaber',
       forceUser: true,
-      homePlanet: 'Tatooine'
+      homePlanet: 'Tatooine',
+      race: 'human'
     };
 
     const res = await request(app)

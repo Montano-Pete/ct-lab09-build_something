@@ -5,5 +5,6 @@ CREATE TABLE starwars (
   character TEXT NOT NULL,
   weapon TEXT NOT NULL,
   force_user BOOL NOT NULL,
-  home_planet TEXT NOT NULL
+  home_planet TEXT NOT NULL,
+  race TEXT NOT NULL
 );
