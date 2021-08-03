@@ -81,11 +81,28 @@ describe('starWars routes', () => {
 
     const res = await request(app)
       .put(`/api/v1/starwars/${character.id}`)
-      .send({ forceUser: false });
+      .send({ forceUser: false }); // correct fact
 
     expect(res.body).toEqual({
       ...character,
       forceUser: false
+    });
+  });
+
+  it('delets a character via DELETE', async () => {
+    const character = await StarWars.insert({
+      character: 'Han Solo',
+      weapon: 'DL-44 Heavy Blaster Pistol',
+      forceUser: false,
+      homePlanet: 'Corellia',
+      race: 'Human'
+    });
+
+    const res = await request(app)
+      .delete(`/api/v1/starwars/${character.id}`);
+
+    expect(res.body).toEqual({
+      message: `${character.character} has been deleted.`
     });
   });
 });
