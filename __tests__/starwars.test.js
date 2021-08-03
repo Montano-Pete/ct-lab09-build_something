@@ -27,4 +27,32 @@ describe('starWars routes', () => {
       ...character
     });
   });
+
+  it('gets all starWars characters via GET', async () => {
+    const lukeSkywalker = await StarWars.insert({
+      character: 'Luke Skywalker',
+      weapon: 'Lightsaber',
+      forceUser: true,
+      homePlanet: 'Tatooine',
+      race: 'Human'
+    });
+    const hanSolo = await StarWars.insert({
+      character: 'Han Solo',
+      weapon: 'DL-44 Heavy Blaster Pistol',
+      forceUser: false,
+      homePlanet: 'Corellia',
+      race: 'Human'
+    });
+    const generalGrievous = await StarWars.insert({
+      character: 'General Grievous',
+      weapon: 'Lightsabers',
+      forceUser: false,
+      homePlanet: 'Kalee',
+      race: 'Cyborg Kaleesh'
+    });
+    
+    const res = await request(app).get('/api/v1/starwars');
+
+    expect(res.body).toEqual([lukeSkywalker, hanSolo, generalGrievous]);
+  });
 });
